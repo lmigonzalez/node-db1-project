@@ -1,7 +1,10 @@
 const router = require('express').Router()
 
+
+
 router.get('/', (req, res, next) => {
   // DO YOUR MAGIC
+  res.status(200).json('hello')
 })
 
 router.get('/:id', (req, res, next) => {
@@ -24,4 +27,10 @@ router.use((err, req, res, next) => { // eslint-disable-line
   // DO YOUR MAGIC
 })
 
+
+router.use((err, req, res, next)=>{
+  res.status(err.status || 500).json({
+    message: err.message,
+  })
+})
 module.exports = router;
