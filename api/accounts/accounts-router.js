@@ -9,12 +9,13 @@ router.get('/', (req, res, next) => {
     res.status(200).json(accounts)
   })
   .catch(err=>{
-
+    next(err)
   })
 })
 
 router.get('/:id', md.checkAccountId, (req, res, next) => {
   // DO YOUR MAGIC
+ res.json(req.account)
 })
 
 router.post('/', md.checkAccountPayload, md.checkAccountNameUnique, (req, res, next) => {
